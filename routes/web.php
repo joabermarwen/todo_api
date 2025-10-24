@@ -7,4 +7,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('todo', TodoController::class);
+Route::post('/todo', [TodoController::class, 'store']);
+Route::get('/todo', [TodoController::class, 'index']);
+Route::get('/todo/{id}', [TodoController::class, 'show']);
+Route::put('/todo/{id}', [TodoController::class, 'update']);
+Route::delete('/todo/{id}', [TodoController::class, 'destroy']);
