@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use Illuminate\Support\Facades\Log;
 
 class TodoController extends Controller
 {
@@ -36,10 +37,12 @@ class TodoController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
         ]);
+        Log::info('Creating todo with title: ' . $request->title);
         $todo = Todo::create([
             'title' => $request->title,
             'is_done' => false,
         ]);
+        Log::info('Created todo: ' . $todo);
         return response()->json(true, 200);
     }
 
